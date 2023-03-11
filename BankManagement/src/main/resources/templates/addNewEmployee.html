@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
+<head>
+    <link href="/main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+    <h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a th:href="@{/index}">Branches</a>
+    <a class="active" th:href="@{/employee}">Employees</a>
+    <a th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+
+<form action="#" th:action="@{/saveEmployee}"th:object="${employee}" method="post">
+    <div class="container">
+        <h2>Add Employee</h2>
+        <hr>
+        <label for="ssn"><b>SSN</b></label>
+        <input type="text" th:field="*{ssn}" placeholder="Enter SSN" name="ssn" id="ssn" required>
+
+        <label for="name"><b>Name</b></label>
+        <input type="text" th:field="*{name}" placeholder="Enter Name" name="name" id="name" required>
+
+        <label for="telephoneNumber"><b>Phone</b></label>
+        <input type="text" th:field="*{telephoneNumber}" placeholder="Enter SSN" name="telephoneNumber" id="telephoneNumber" required>
+
+        <label for="startDate"><b>Start Date</b></label>
+        <input type="text" th:field="*{startDate}" placeholder="Start Date" name="startDate" id="startDate" required>
+
+        <label for="managerFlag"><b>Manager</b></label>
+        <select th:field="*{managerFlag}" id="managerFlag" name="managerFlag">
+            <option th:value="'true'" th:text="Yes"></option>
+            <option th:value="'false'" th:text="No"></option>
+        </select>
+
+        <button type="submit" class="savebtn">Save</button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="/main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+    <h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a th:href="@{/index}">Branches</a>
+    <a th:href="@{/employee}">Employees</a>
+    <a class="active" th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+<h3 th:text="${customer.name}"></h3>
+<h3>Loan Details</h3>
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Loan Number</th>
+        <th>Loan Amount</th>
+        <th>Loan Branch</th>
+        <th>Loan Amount Paid</th>
+        <th>Number of Payments</th>
+        <th>Loan Outstanding Amount</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="loan:${loanDtoList}">
+        <td th:text="${loan.loanNumber}"></td>
+        <td th:text="${loan.amount}"></td>
+        <td th:text="${loan.loanBranch}"></td>
+        <td th:text="${loan.paymentAmount}"></td>
+        <td th:text="${loan.paymentsMade}"></td>
+        <td th:text="${loan.residualAmount}"></td>
+        <td>
+            <a th:href="@{'/addLoanPayment/' + ${loan.loanNumber}}">Add Loan Payment</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="addBtn" th:href="@{'/addNewLoan/' + ${customer.ssn}}">Apply for new Loan</a>
+</body>
+</html>

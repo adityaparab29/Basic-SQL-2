@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+    <h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a th:href="@{/index}">Branches</a>
+    <a class="active" th:href="@{/employee}">Employees</a>
+    <a th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+
+<a class="addBtn" th:href="@{/addNewEmployee}">Add Employee</a>
+
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>SSN</th>
+        <th>Employee Name</th>
+        <th>Phone</th>
+        <th>Employment Start Date</th>
+        <th>Manager</th>
+        <th>Manager SSN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee:${listEmployee}">
+        <td th:text="${employee.ssn}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.telephoneNumber}"></td>
+        <td th:text="${#dates.format(employee.startDate, 'dd-MMM-yyyy')}"></td>
+        <td th:text="${employee.managerFlag} ? 'Yes' : 'No' "></td>
+        <td th:text="${employee.managerFlag} ? '-' : ${employee.managerSSN}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

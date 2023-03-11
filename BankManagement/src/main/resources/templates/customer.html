@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="/main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+    <h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a th:href="@{/index}">Branches</a>
+    <a th:href="@{/employee}">Employees</a>
+    <a class="active" th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+
+<a class="addBtn" th:href="@{/addNewCustomer}">Add Customer</a>
+
+
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>SSN</th>
+        <th>Customer Name</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer:${listCustomer}">
+        <td th:text="${customer.ssn}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.street}"></td>
+        <td th:text="${customer.city}"></td>
+        <td>
+            <a th:href="@{'/viewCustomerAccounts/' + ${customer.ssn}}">View Accounts</a>
+            &nbsp;&nbsp;&nbsp;
+            <a th:href="@{'/viewCustomerLoans/' + ${customer.ssn}}">View Loans</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

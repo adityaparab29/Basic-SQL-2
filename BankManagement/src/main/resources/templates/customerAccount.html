@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="/main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+    <h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a th:href="@{/index}">Branches</a>
+    <a th:href="@{/employee}">Employees</a>
+    <a class="active" th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+<h3 th:text="${customer.name}"></h3>
+<h3>Account Details</h3>
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Account Number</th>
+        <th>Account Type</th>
+        <th>Balance</th>
+        <th>Account Branch</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account:${listAccount}">
+        <td th:text="${account.accountNumber}"></td>
+        <td th:text="${account.accountType}"></td>
+        <td th:text="${account.balance}"></td>
+        <td th:text="${account.bankBranch.branchName}"></td>
+    </tr>
+    </tbody>
+</table>
+<a class="addBtn" th:href="@{'/addNewAccount/' + ${customer.ssn}}">Open New Account</a>
+</body>
+</html>

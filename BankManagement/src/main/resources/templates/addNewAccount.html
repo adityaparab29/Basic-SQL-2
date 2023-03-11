@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="/main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+    <h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a th:href="@{/index}">Branches</a>
+    <a th:href="@{/employee}">Employees</a>
+    <a class="active" th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+
+
+
+<form action="#" th:action="@{/saveAccount}" th:object="${accountDto}" method="post">
+    <div class="container">
+        <h2>Open New Account</h2> <p th:field="*{customerSSN}"></p>
+        <hr>
+
+        <label for="customerSSN"><b>Customer SSN</b></label>
+        <input type="text" th:field="*{customerSSN}" th:value="${accountDto.customerSSN}" name="customerSSN" id="customerSSN" readonly>
+
+        <label for="accountType"><b>Account Type</b></label>
+        <select th:field="*{accountType}" id="accountType" name="accountType" required>
+            <option value="0">Select Type</option>
+            <option th:value="SAVINGS" th:text="Savings"></option>
+            <option th:value="CHECKING" th:text="Checking"></option>
+        </select>
+
+        <label for="balance"><b>Initial Balance</b></label>
+        <input type="number" th:field="*{balance}" placeholder="Initial Balance" name="balance" id="balance" required>
+
+        <label for="bankBranch"><b>City</b></label>
+        <select th:field="*{bankBranch}" id="bankBranch" name="bankBranch" required>
+            <option value="0">Select Branch</option>
+            <option th:each="branch : ${listBranch}" th:value="${branch.branchName}"
+                    th:text="${branch.branchName}"></option>
+        </select>
+        <button type="submit" class="savebtn">Save</button>
+    </div>
+</form>
+
+</body>
+</html>

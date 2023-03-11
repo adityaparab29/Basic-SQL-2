@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html lang="en">
+<head>
+    <link href="/main.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Bank Management System</title>
+</head>
+<body>
+<div class="center">
+<h1>Bank Management System</h1>
+</div>
+<div class="topnav">
+    <a class="active" th:href="@{/index}">Branches</a>
+    <a th:href="@{/employee}">Employees</a>
+    <a th:href="@{/customer}">Customers</a>
+    <a th:href="@{/about}">About</a>
+</div>
+<a class="addBtn" th:href="@{/addNewBranch}">Add Branch</a>
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Branch Name</th>
+        <th>Branch City</th>
+        <th>Assets</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="branch:${listBranch}">
+        <td th:text="${branch.branchName}"></td>
+        <td th:text="${branch.branchCity}"></td>
+        <td th:text="${branch.assets}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
